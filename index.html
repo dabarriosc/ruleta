@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="wheel-container">
+      <div class="wheel">
+        <!-- Segmentos con los colores proporcionados -->
+        <div class="segment" style="background-color: #aa9777;">
+            <span>vuelve a intentarlo</span>
+        </div>
+        <div class="segment" style="background-color: #27335e;">
+            <span>perdiste pero obtén un obsequio de consolación</span>
+        </div>
+        <div class="segment" style="background-color: #001e42;">
+            <span>BONO 2 MILLONES</span>
+        </div>
+        <div class="segment" style="background-color: #aa9777;">
+            <span>BONO 5 MILLONES</span>
+        </div>
+        <div class="segment" style="background-color: #27335e;">
+            <span>BONO 10 MILLONES</span>
+        </div>
+        <div class="segment" style="background-color: #001e42;">
+            <span>BONO AIRE ACONDICIONADO</span>
+        </div>
+        <!-- Imagen en el centro de la ruleta -->
+        <div class="center-image">
+          <img src="assets/logo.jpg" alt="Centro de la ruleta" />
+        </div>
+      </div>
+      <div class="pointer"></div>
+    </div>
+    <button onclick="spinWheel()">Girar</button>
+    <button onclick="resetWheel()">Reiniciar</button>
+    <p id="result">Resultado:</p>
+  </div>
+
+  <script>
+    let isSpinning = false; // Para evitar que se gire mientras ya está girando
+
+    function spinWheel() {
+        if (isSpinning) return; // Evita que gire si ya está girando
+        isSpinning = true;
+
+        const segments = document.querySelectorAll('.wheel .segment'); // Todos los segmentos
+        const wheel = document.querySelector('.wheel'); // La rueda
+
+        // El número de segmentos
+        const numSegments = segments.length;
+        
+        // Generar un número aleatorio para el giro
+        const randomSpin = Math.floor(Math.random() * 1000) + 3000; // Giro largo aleatorio
+
+        // Aplica el giro a la rueda
+        wheel.style.transition = "transform 4s cubic-bezier(0.25, 0.1, 0.25, 1)";
+        wheel.style.transform = `rotate(${randomSpin}deg)`; // Gira la ruleta
+
+        // Determina el segmento debajo de la flecha
+        setTimeout(function() {
+            // Calcula el índice del segmento que está bajo la flecha
+            const segmentIndex = Math.floor(((randomSpin % 360) / 60) % numSegments);
+
+            // Obtiene el contenido del segmento
+            const resultText = segments[segmentIndex].querySelector('span').innerText;
+
+            // Muestra el resultado
+            document.getElementById('result').innerText = "Resultado: " + resultText;
+
+            // Habilitar nuevo giro después de la animación
+            isSpinning = false;
+        }, 4000); // El tiempo de espera debe coincidir con la duración del giro
+    }
+
+    function resetWheel() {
+        const wheel = document.querySelector('.wheel');
+        // Restablecer la rotación de la rueda a 0 grados
+        wheel.style.transition = "transform 0s"; // Sin transición para un reinicio rápido
+        wheel.style.transform = "rotate(0deg)"; // Restaura la posición inicial
+        document.getElementById('result').innerText = "Resultado:"; // Limpiar el resultado
+    }
+  </script>
+</body>
+</html>
+
