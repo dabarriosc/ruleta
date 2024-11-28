@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bizantheum&display=swap');
 body {
-    font-family: 'Bizantheum', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif; /* Aplicamos Montserrat */
     text-align: center;
     margin: 0;
     padding: 0;
@@ -12,10 +12,11 @@ body {
 }
   
 .wheel-container {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    margin-left: 600px;
+    bottom: 20px;
 }
   
 .wheel {
@@ -90,18 +91,61 @@ button {
 }
 
 .segment span {
-    font-family: 'Bizantheum', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif; /* Aplicamos Montserrat */
     position: absolute;
-    bottom: 90px;
+    bottom: 100px;
     display: block;
     word-wrap: break-word; /* Forza el salto de línea cuando el texto es demasiado largo */
     white-space: normal; 
     transform: rotate(-30deg); /* Corrige la orientación del texto */
-    font-size: 1rem; /* Ajusta el tamaño del texto */
+    font-size: 2rem; /* Ajusta el tamaño del texto */
     color: white; /* Color del texto */
     font-weight: bold; /* Resalta el texto */
     text-align: left; /* Centra el texto dentro del segmento */
     width: 60%; /* Para que no ocupe todo el segmento */
     line-height: 1.2; /* Mejora la separación entre líneas */
     pointer-events: none; /* Evita interferencias al interactuar */
+}
+
+/* Estilo para los botones */
+/* Estilo para los botones */
+button {
+    font-size: 30px; /* Aumentamos el tamaño de la fuente */
+    padding: 20px 40px; /* Aumentamos el padding (margen interno) */
+    border: none;
+    border-radius: 50px;  /* Bordes más redondeados */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transición suave para efectos */
+    font-family: 'Bizantheum', Arial, sans-serif;
+    position: absolute;  /* Para posicionarlos absolutamente */
+    bottom: 20px; /* Para que estén cerca de la parte inferior */
+}
+
+/* Alineación y estilo para el botón GO */
+button#go {
+    left: 20px; /* Alineamos a la izquierda */
+    background-color: #27335e; /* Color azul similar al de los segmentos */
+    color: white;
+    font-weight: bold;
+}
+
+button#go:hover {
+    background-color: #001e42; /* Oscurecer un poco al pasar el ratón */
+}
+
+/* Alineación y estilo para el botón Reiniciar */
+button#reset {
+    left: 180px; /* Alineamos el botón "Reiniciar" un poco a la derecha del botón "GO" */
+    background-color: #aa9777; /* Color similar al de los segmentos */
+    color: white;
+    font-weight: bold;
+}
+
+button#reset:hover {
+    background-color: #8a7a55; /* Oscurecer al pasar el ratón */
+}
+
+/* Efecto de animación para los botones */
+button:active {
+    transform: scale(0.95); /* Efecto de reducción al presionar */
 }
